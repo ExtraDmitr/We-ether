@@ -1,11 +1,4 @@
-                                                        
-                                                        
-                               m    #                   
-m     m  mmm           mmm   mm#mm  # mm    mmm    m mm 
-"m m m" #"  #         #"  #    #    #"  #  #"  #   #"  "
- #m#m#  #""""   """   #""""    #    #   #  #""""   #    
-  # #   "#mm"         "#mm"    "mm  #   #  "#mm"   #    
-
+# We-ether 
 
 Decentralized weather-collection on sea-going vessels
 
