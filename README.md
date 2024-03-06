@@ -1,5 +1,12 @@
-# We-ether
+                                                        
+                               m    #                   
+# m     m  mmm           mmm   mm#mm  # mm    mmm    m mm 
+# "m m m" #"  #         #"  #    #    #"  #  #"  #   #"  "
+#  #m#m#  #""""   """   #""""    #    #   #  #""""   #    
+#   # #   "#mm"         "#mm"    "mm  #   #  "#mm"   #    
+
 Decentralized weather-collection on sea-going vessels
+
 
 References:
 1) https://weatherxm.com
