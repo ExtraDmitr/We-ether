@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sensor Data Display</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
+        #container { max-width: 600px; margin: 30px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #4A90E2; }
+        .data { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Sensor Data</h1>
+        <div class="data" id="sensorData">Waiting for data...</div>
+        <div class="data" id="connectionCount">Connections: 0</div>
+    </div>
+
+    <script>
+        const eventSource = new EventSource('/events');
+
+        eventSource.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            const sensorDisplay = document.getElementById('sensorData');
+            const connectionDisplay = document.getElementById('connectionCount');
+
+            if (data.temperature && data.humidity) {
+                sensorDisplay.innerHTML = `Temperature: ${data.temperature} °C<br>Humidity: ${data.humidity}%`;
+            } else {
+                sensorDisplay.innerHTML = 'Sensor data unavailable';
+            }
+            connectionDisplay.innerHTML = `Connections: ${data.connectionCount}`;
+        };
+    </script>
+</body>
+</html>
