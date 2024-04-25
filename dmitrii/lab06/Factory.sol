@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0
-// Lab 06 of I4EA of SEAS4.0, 23/23
+// Lab 06 of I4EA of SEAS4.0, 23/24
 // Tasks performed by Dmitrii A.
 // tasks 9 11 12 and 14 with help of GPT4.
 
