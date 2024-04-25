@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sensor Data Display with Map</title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; font-family: Arial, sans-serif; color: #333; }
+        .container { max-width: 600px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        #map { height: 300px; }
+        .data { margin-top: 10px; }
+    </style>
+</head>
+<body>
+<div class="container" id="sensorContainer">
+    <h1>Sensor Data</h1>
+    <div class="data" id="temperature">Temperature: Waiting for data...</div>
+    <div class="data" id="tempMeteo">Meteo Temperature: Waiting for data...</div>
+    <div class="data" id="humidity">Humidity: Waiting for data...</div>
+    <div class="data" id="pressure">Pressure: Waiting for data...</div>
+    <div class="data" id="latitude">Latitude: Waiting for data...</div>
+    <div class="data" id="longitude">Longitude: Waiting for data...</div>
+    <div class="data" id="connectionCount">Connections: 0</div>
+</div>
+<div class="container" id="mapContainer">
+    <div id="map"></div>
+</div>
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+<script>
+    mapboxgl.accessToken = 'pk.........';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        zoom: 9
+    });
+
+    let marker; // Define marker variable outside to check if it exists
+
+    const eventSource = new EventSource('/events');
+    eventSource.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        document.getElementById('temperature').innerHTML = `Temperature: ${data.lastUpdate?.temperature || 'Unavailable'} °C`;
+        document.getElementById('tempMeteo').innerHTML = `Meteo Temperature: ${data.lastUpdate?.tempMeteo || 'Unavailable'} °C`;
+        document.getElementById('humidity').innerHTML = `Humidity: ${data.lastUpdate?.humidity || 'Unavailable'}%`;
+        document.getElementById('pressure').innerHTML = `Pressure: ${data.lastUpdate?.pressure || 'Unavailable'} Pa`;
+        document.getElementById('latitude').innerHTML = `Latitude: ${data.geo?.lat || 'Unavailable'}`;
+        document.getElementById('longitude').innerHTML = `Longitude: ${data.geo?.lon || 'Unavailable'}`;
+        document.getElementById('connectionCount').innerHTML = `Connections: ${data.connectionCount}`;
+
+        if (data.geo && data.geo.lat && data.geo.lon) {
+            map.setCenter([data.geo.lon, data.geo.lat]);
+            if (marker) {
+                marker.setLngLat([data.geo.lon, data.geo.lat]);
+            } else {
+                marker = new mapboxgl.Marker()
+                    .setLngLat([data.geo.lon, data.geo.lat])
+                    .addTo(map);
+            }
+        }
+    };
+</script>
+</body>
+</html>
