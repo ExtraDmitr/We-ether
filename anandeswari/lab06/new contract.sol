@@ -80,4 +80,16 @@ contract DemoContract
         users[owner].tokens -= _amount;
         users[_receiver].tokens += _amount;
     }
+ // Function to purchase tokens with Ether
+    function buyTokens() public payable {
+        // Calculate the number of tokens that can be purchased with the sent Ether
+        uint256 tokensToBuy = msg.value / 2; // 1 token = 2 Ether
+
+        // Check if the owner has enough tokens
+        require(users[owner].tokens >= tokensToBuy, "Owner does not have enough tokens");
+
+        // Update the balances
+        users[owner].tokens -= tokensToBuy;
+        users[msg.sender].tokens += tokensToBuy;
+    }
 }
