@@ -5,7 +5,7 @@
 const char* ssid = "Mehmet";
 const char* password = "12345qwe";
 
-const char* serverUrl = "***************";
+const char* serverUrl = "***************"; //add adress!!
 
 WiFiClient client;
 HTTPClient http;
