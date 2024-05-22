@@ -5,7 +5,7 @@
 const char* ssid = "Mehmet";
 const char* password = "12345qwe";
 
-const char* serverUrl = "http://16.170.174.80:3000/data";
+const char* serverUrl = "***************";
 
 WiFiClient client;
 HTTPClient http;
