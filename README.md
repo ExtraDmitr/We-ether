@@ -11,7 +11,7 @@ Some examples of Smart Contract Use:
 2.	Data Subscription: Offer a subscription model where users can pay to get real-time weather data feeds. Smart contracts can manage subscriptions and automate data access permissions based on payments.
 
 
-
+The project also aknowledges previous advances made in decentralized approaches to weather data collection.
 
 References:
 1) https://weatherxm.com
